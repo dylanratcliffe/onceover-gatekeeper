@@ -1,5 +1,4 @@
-require "onceover/octocatalog/version"
-require "onceover/octocatalog/cli"
+require "onceover/gatekeeper/test"
 
 class Onceover
   module Gatekeeper

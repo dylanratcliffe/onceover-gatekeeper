@@ -1,17 +1,17 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'onceover/octocatalog/diff/version'
+require 'onceover/gatekeeper/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "onceover-octocatalog-diff"
+  spec.name          = "onceover-gatekeeper"
   spec.version       = Onceover::Octocatalog::Diff::VERSION
   spec.authors       = ["Dylan Ratcliffe"]
   spec.email         = ["dylan.ratcliffe@puppet.com"]
 
-  spec.summary       = "Adds octocatalog-diff functionality to onceover"
-  spec.description   = "Allows Onceover users to use their existing factsets to check what affect given changes will have on a role's compiled catalog"
-  spec.homepage      = "https://github.com/dylanratcliffe/onceover-octocatalog-diff"
+  spec.summary       = "Adds gatekeeper functionality to onceover"
+  spec.description   = ""
+  spec.homepage      = "https://github.com/dylanratcliffe/onceover-gatekeeper"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
