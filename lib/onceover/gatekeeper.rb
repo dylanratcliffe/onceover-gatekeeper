@@ -1,4 +1,3 @@
-require 'onceover/gatekeeper/test'
 require 'onceover/gatekeeper/cli'
 
 class Onceover
