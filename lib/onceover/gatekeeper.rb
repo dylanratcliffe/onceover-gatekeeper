@@ -4,15 +4,20 @@ require 'onceover/controlrepo'
 
 class Onceover
   class Gatekeeper
-    def self.pre_spec(runner)
-      compiler = Onceover::Gatekeeper::Compiler.new
-      repo     = runner.repo
-      config   = runner.config
+    attr_accessor :config, :repo
 
-
+    def self.post_prepare(runner)
+      @config = runner.config
+      @repo   = runner.repo
     end
 
     def self.pre_write_spec_test(tst)
+      c = Onceover::Gatekeeper::Compiler.new
+
+      c.node_name = 'foo'
+      c.facts = tst.nodes[0].fact_set
+      #c.hiera_config = @repo
+
       require 'pry'
       binding.pry
     end
