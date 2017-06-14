@@ -27,7 +27,7 @@ class Onceover
             klass = args.first
             pattern = "**/#{File.join(klass.split('::').insert(1, 'manifests'))}.pp"
 
-            s = SOE::Compiler.new
+            s = Onceover::Gatekeeper::Compiler.new
             manifest_file = opts[:modulepath].map { |r| Dir.glob("#{r}/#{pattern}") }.flatten.first
             s.code = File.read(manifest_file) + "\ninclude #{klass}"
 
