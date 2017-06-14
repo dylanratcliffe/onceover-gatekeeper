@@ -6,7 +6,7 @@ class Onceover
   class Gatekeeper
     attr_accessor :config, :repo
 
-    def self.post_prepare(runner)
+    def self.pre_prepare(runner)
       @config = runner.config
       @repo   = runner.repo
 
