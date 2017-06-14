@@ -1,4 +1,5 @@
-require "onceover/gatekeeper/test"
+require 'onceover/gatekeeper/test'
+require 'onceover/gatekeeper/cli'
 
 class Onceover
   class Gatekeeper
