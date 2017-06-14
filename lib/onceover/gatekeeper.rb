@@ -9,9 +9,6 @@ class Onceover
     def self.pre_prepare(runner)
       @config = runner.config
       @repo   = runner.repo
-
-      require 'pry'
-      binding.pry
     end
 
     def self.pre_write_spec_test(tst)
