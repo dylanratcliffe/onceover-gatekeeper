@@ -3,8 +3,6 @@ require 'pry'
 require 'onceover/testconfig'
 require 'onceover/controlrepo'
 
-binding.pry
-
 repo = Onceover::Controlrepo.new
 conf = Onceover::TestConfig.new(repo.onceover_yaml,{})
 

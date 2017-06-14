@@ -1,7 +1,9 @@
 require "onceover/gatekeeper/test"
 
 class Onceover
-  module Gatekeeper
-    # This does nothing, just pulles in other stuff
+  class Gatekeeper
+    def self.pre_spec
+      binding.pry
+    end
   end
 end
