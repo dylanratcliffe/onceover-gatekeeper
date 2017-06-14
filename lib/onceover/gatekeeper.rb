@@ -19,7 +19,7 @@ class Onceover
       c.hiera_config = @repo.hiera_config
       c.code = "include #{tst.classes[0].name}"
       c.environment = 'production' # TODO: Fix
-      c.modulepath = @repo.temp_modulepath
+      c.modulepath = @repo.temp_modulepath.split(':')
 
       require 'pry'
       binding.pry
