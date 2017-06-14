@@ -23,6 +23,7 @@ class Onceover
             exit 0
           end
 
+          # TODO: Make sure that the arguments are validated correctly
           run do |opts, args, cmd|
             klass = args.first
             pattern = "**/#{File.join(klass.split('::').insert(1, 'manifests'))}.pp"
