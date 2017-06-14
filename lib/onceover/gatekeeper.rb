@@ -21,6 +21,9 @@ class Onceover
       c.facts = tst.nodes[0].fact_set
       #c.hiera_config = @repo
 
+      require 'pry'
+      binding.pry
+
     end
   end
 end
