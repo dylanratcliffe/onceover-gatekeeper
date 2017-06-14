@@ -1,11 +1,10 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'onceover/gatekeeper/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "onceover-gatekeeper"
-  spec.version       = Onceover::Octocatalog::Diff::VERSION
+  spec.version       = '0.0.1'
   spec.authors       = ["Dylan Ratcliffe"]
   spec.email         = ["dylan.ratcliffe@puppet.com"]
 
