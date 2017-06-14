@@ -39,11 +39,6 @@ class Onceover
             puts JSON.generate(s.build)
           end
         end
-
-
-        def self.run(args)
-          @cmd.run(args)
-        end
       end
     end
   end
