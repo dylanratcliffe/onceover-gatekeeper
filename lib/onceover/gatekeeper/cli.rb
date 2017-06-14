@@ -1,4 +1,5 @@
 require 'onceover/gatekeeper/compiler'
+require 'onceover/cli'
 
 class Onceover
   class CLI
