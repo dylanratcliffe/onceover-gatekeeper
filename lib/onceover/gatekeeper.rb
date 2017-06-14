@@ -4,10 +4,10 @@ require 'onceover/controlrepo'
 
 class Onceover
   class Gatekeeper
-    def self.pre_spec
+    def self.pre_spec(runner)
       compiler = Onceover::Gatekeeper::Compiler.new
-      repo     = Onceover::Controlrepo.new({})
-      config   = Onceover::TestConfig.new(repo.onceover_yaml,{})
+      repo     = runner.repo
+      config   = runner.config
 
       require 'pry'
       binding.pry
