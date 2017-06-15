@@ -5,12 +5,7 @@ class Onceover
     class Compiler
       include RSpec::Puppet::Support
 
-      attr_accessor :code, :node_name, :facts, :hiera_config, :environment
-      attr_reader :modulepath
-
-      def modulepath=(value)
-        Puppet[:modulepath] = value
-      end
+      attr_accessor :code, :node_name, :facts, :hiera_config, :environment, :modulepath
 
       def adapter
         @adapter ||= begin
@@ -18,6 +13,9 @@ class Onceover
           adapter.setup_puppet(self)
           Puppet::Test::TestHelper.initialize
           Puppet::Test::TestHelper.before_each_test
+          env = Puppet::Node::Environment.create(environment, modulepath, Puppet::Node::Environment::NO_MANIFEST)
+          loader = Puppet::Environments::Static.new(env)
+          Puppet.push_context({:environments => loader, :current_environment => env}, "Gatekeeper context")
           adapter
         end
       end
