@@ -14,6 +14,7 @@ class Onceover
 
     def self.pre_write_spec_test(tst)
       require 'json'
+      require 'fileutils'
 
       c = Onceover::Gatekeeper::Compiler.new
 
@@ -26,7 +27,7 @@ class Onceover
       c.modulepath = @repo.temp_modulepath.split(':')
 
       # Template variables
-      examples_name = tst.classes[0].name
+      examples_name = "#{tst.classes[0].name} on #{tst.nodes[0].name}"
       class_name    = tst.classes[0].name
       resources = c.build
 
@@ -34,8 +35,12 @@ class Onceover
       require 'pry'
       binding.pry
 
-      Onceover::Gatekeeper.evaluate_template('shared_example.erb',binding)
-      #c.hiera_config = @repo
+      shared_example = Onceover::Gatekeeper.evaluate_template('shared_example.erb',binding)
+      FileUtils.mkdir_p("#{@repo.tempdir}/spec/shared_examples")
+      File.write("#{@repo.tempdir}/spec/shared_examples/#{examples_name}.rb",shared_example)
+      # Make sure the folders are there
+      # Write the shared example
+      # Modify the test to include the extra line
     end
 
     def self.evaluate_template(template_name,bind)
