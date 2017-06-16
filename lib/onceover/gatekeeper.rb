@@ -19,17 +19,17 @@ class Onceover
       c = Onceover::Gatekeeper::Compiler.new
 
       # Set up settings from onceover
-      c.node_name = tst.nodes[0].fact_set['fqdn']
-      c.facts = tst.nodes[0].fact_set
+      c.node_name    = tst.nodes[0].fact_set['fqdn']
+      c.facts        = tst.nodes[0].fact_set
       c.hiera_config = @repo.hiera_config
-      c.code = "include #{tst.classes[0].name}"
-      c.environment = 'production'
-      c.modulepath = @repo.temp_modulepath.split(':')
+      c.code         = "include #{tst.classes[0].name}"
+      c.environment  = 'production'
+      c.modulepath   = @repo.temp_modulepath.split(':')
 
       # Template variables
-      examples_name = "#{tst.classes[0].name} on #{tst.nodes[0].name}"
-      class_name    = tst.classes[0].name
-      resources = c.build
+      examples_name  = "#{tst.classes[0].name} on #{tst.nodes[0].name}"
+      class_name     = tst.classes[0].name
+      resources      = c.build
 
 
       require 'pry'
@@ -38,8 +38,6 @@ class Onceover
       shared_example = Onceover::Gatekeeper.evaluate_template('shared_example.erb',binding)
       FileUtils.mkdir_p("#{@repo.tempdir}/spec/shared_examples")
       File.write("#{@repo.tempdir}/spec/shared_examples/#{examples_name}.rb",shared_example)
-      # Make sure the folders are there
-      # Write the shared example
       # Modify the test to include the extra line
     end
 
