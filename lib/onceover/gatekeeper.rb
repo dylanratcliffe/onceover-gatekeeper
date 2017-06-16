@@ -34,10 +34,11 @@ class Onceover
       require 'pry'
       binding.pry
 
+      Onceover::Gatekeeper.evaluate_template('shared_example.erb',binding)
       #c.hiera_config = @repo
     end
 
-    def evaluate_template(template_name,bind)
+    def self.evaluate_template(template_name,bind)
       template_dir = File.expand_path('../../templates',File.dirname(__FILE__))
       template = File.read(File.expand_path("./#{template_name}",template_dir))
       ERB.new(template, nil, '-').result(bind)
