@@ -38,17 +38,15 @@ class Onceover
       shared_example = Onceover::Gatekeeper.evaluate_template('shared_example.erb',binding)
       FileUtils.mkdir_p("#{@repo.tempdir}/spec/shared_examples")
       File.write("#{@repo.tempdir}/spec/shared_examples/#{examples_name}.rb",shared_example)
+
       # Modify the test to include the extra line
+      tst.test_config['in_context_additions'] << "include_examples \"#{tst.to_s}\""
     end
 
     def self.evaluate_template(template_name,bind)
       template_dir = File.expand_path('../../templates',File.dirname(__FILE__))
       template = File.read(File.expand_path("./#{template_name}",template_dir))
       ERB.new(template, nil, '-').result(bind)
-    end
-
-    def self.post_create_test(tst)
-      tst.test_config['in_context_additions'] << "include_examples \"#{tst.to_s}\""
     end
   end
 end
