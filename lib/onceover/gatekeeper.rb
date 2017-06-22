@@ -40,7 +40,7 @@ class Onceover
       File.write("#{@repo.tempdir}/spec/shared_examples/#{examples_name}.rb",shared_example)
 
       # Modify the test to include the extra line
-      tst.test_config['in_context_additions'] << "include_examples \"#{tst.to_s}\""
+      tst.test_config['in_context_additions'] << "include_examples \"#{class_name} on #{tst.nodes[0].name}\""
     end
 
     def self.evaluate_template(template_name,bind)
