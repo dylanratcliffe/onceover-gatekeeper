@@ -32,7 +32,7 @@ class Onceover
       resources      = c.build
 
       # Reject things set by the compiler
-      rescources.each.delete(:type)
+      resources.each.delete(:type)
 
       require 'pry'
       binding.pry
