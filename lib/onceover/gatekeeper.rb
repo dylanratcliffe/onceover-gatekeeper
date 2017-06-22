@@ -46,5 +46,9 @@ class Onceover
       template = File.read(File.expand_path("./#{template_name}",template_dir))
       ERB.new(template, nil, '-').result(bind)
     end
+
+    def self.post_create_test(tst)
+      tst.test_config['in_context_additions'] << "include_examples \"#{tst.to_s}\""
+    end
   end
 end
