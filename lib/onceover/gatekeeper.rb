@@ -30,6 +30,7 @@ class Onceover
       examples_name  = tst.to_s
       class_name     = tst.classes[0].name
       resources      = c.build
+      rejected_keys  = [:type,:name]
 
       require 'pry'
       binding.pry
