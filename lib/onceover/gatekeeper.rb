@@ -31,6 +31,8 @@ class Onceover
       class_name     = tst.classes[0].name
       resources      = c.build
 
+      # Reject things set by the compiler
+      rescources.each.delete(:type)
 
       require 'pry'
       binding.pry
