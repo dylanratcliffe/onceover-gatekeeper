@@ -4,7 +4,7 @@ shared_examples_for '<%= examples_name %>' do |fact_set|
   describe "<%= class_name %> integrity" do
 <% resources.each do |resource| %>
     it { is_expected.to contain_<%= resource[:type] %>('<%= resource[:name] %>').with({
-<% resource.each do |attribute,value| -%>
+<% resource.reject{|k,v|k == :type}.each do |attribute,value| -%>
       "<%= attribute.to_s %>" => "<%= value.to_s %>",
 <% end -%>
     })}
