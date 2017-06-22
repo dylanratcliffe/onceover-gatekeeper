@@ -28,6 +28,7 @@ class Onceover
 
       # Template variables
       examples_name  = tst.to_s
+      class_name     = tst.classes[0].name
       resources      = c.build
 
 
