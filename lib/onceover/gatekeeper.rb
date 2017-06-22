@@ -37,7 +37,7 @@ class Onceover
 
       shared_example = Onceover::Gatekeeper.evaluate_template('shared_example.erb',binding)
       FileUtils.mkdir_p("#{@repo.tempdir}/spec/shared_examples")
-      File.write("#{@repo.tempdir}/spec/shared_examples/#{examples_name}.rb",shared_example)
+      File.write("#{@repo.tempdir}/spec/shared_examples/#{examples_name}_spec.rb",shared_example)
 
       # Modify the test to include the extra line
       tst.test_config['in_context_additions'] << "include_examples \"#{tst.to_s}\""
