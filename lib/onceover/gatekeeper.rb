@@ -22,7 +22,7 @@ class Onceover
       c.node_name    = tst.nodes[0].fact_set['fqdn']
       c.facts        = tst.nodes[0].fact_set
       c.hiera_config = @repo.hiera_config
-      c.code         = "include #{tst.classes[0].name}"
+      c.code         = "include #{tst.test_config['static_classes'].join("\ninclude ")}"
       c.environment  = 'production'
       c.modulepath   = @repo.temp_modulepath.split(':')
 
