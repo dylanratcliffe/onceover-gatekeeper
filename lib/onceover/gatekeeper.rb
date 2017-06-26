@@ -13,35 +13,33 @@ class Onceover
     end
 
     def self.pre_write_spec_test(tst)
-      require 'json'
-      require 'fileutils'
+      if tst.test_config['static_classes']
+        require 'json'
+        require 'fileutils'
 
-      c = Onceover::Gatekeeper::Compiler.new
+        c = Onceover::Gatekeeper::Compiler.new
 
-      # Set up settings from onceover
-      c.node_name    = tst.nodes[0].fact_set['fqdn']
-      c.facts        = tst.nodes[0].fact_set
-      c.hiera_config = @repo.hiera_config
-      c.code         = "include #{tst.test_config['static_classes'].join("\ninclude ")}"
-      c.environment  = 'production'
-      c.modulepath   = @repo.temp_modulepath.split(':')
+        # Set up settings from onceover
+        c.node_name    = tst.nodes[0].fact_set['fqdn']
+        c.facts        = tst.nodes[0].fact_set
+        c.hiera_config = @repo.hiera_config
+        c.code         = "include #{tst.test_config['static_classes'].join("\ninclude ")}"
+        c.environment  = 'production'
+        c.modulepath   = @repo.temp_modulepath.split(':')
 
-      # Template variables
-      examples_name  = tst.to_s
-      class_name     = tst.classes[0].name
-      resources      = c.build
-      rejected_keys  = [:type,:name]
+        # Template variables
+        examples_name  = tst.to_s
+        class_name     = tst.classes[0].name
+        resources      = c.build
+        rejected_keys  = [:type,:name]
 
-      require 'pry'
+        shared_example = Onceover::Gatekeeper.evaluate_template('shared_example.erb',binding)
+        FileUtils.mkdir_p("#{@repo.tempdir}/spec/shared_examples")
+        File.write("#{@repo.tempdir}/spec/shared_examples/#{examples_name}_spec.rb",shared_example)
 
-      shared_example = Onceover::Gatekeeper.evaluate_template('shared_example.erb',binding)
-      FileUtils.mkdir_p("#{@repo.tempdir}/spec/shared_examples")
-      File.write("#{@repo.tempdir}/spec/shared_examples/#{examples_name}_spec.rb",shared_example)
-
-      # Modify the test to include the extra line
-      tst.test_config['in_context_additions'] << "include_examples \"#{tst.to_s}\""
-      binding.pry
-
+        # Modify the test to include the extra line
+        tst.test_config['in_context_additions'] << "include_examples \"#{tst.to_s}\""
+      end
     end
 
     def self.evaluate_template(template_name,bind)
