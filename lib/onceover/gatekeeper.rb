@@ -33,7 +33,6 @@ class Onceover
       rejected_keys  = [:type,:name]
 
       require 'pry'
-      binding.pry
 
       shared_example = Onceover::Gatekeeper.evaluate_template('shared_example.erb',binding)
       FileUtils.mkdir_p("#{@repo.tempdir}/spec/shared_examples")
@@ -41,6 +40,8 @@ class Onceover
 
       # Modify the test to include the extra line
       tst.test_config['in_context_additions'] << "include_examples \"#{tst.to_s}\""
+      binding.pry
+
     end
 
     def self.evaluate_template(template_name,bind)
